@@ -1,0 +1,45 @@
+# Default values for 2048.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: alexwhen/docker-2048
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name:
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {
+    "kubernetes.io/ingress.class": "alb",
+    "alb.ingress.kubernetes.io/scheme": "internet-facing"
+  }
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

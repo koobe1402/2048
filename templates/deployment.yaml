@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "2048-deployment"
+  namespace: "default"
+spec:
+  selector:
+    matchLabels:
+      app: "2048"
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: "2048"
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}
+        imagePullPolicy: Always
+        name: "2048"
+        ports:
+        - containerPort: 80
